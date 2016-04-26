@@ -12,22 +12,14 @@ namespace Praksa_V2
     using System;
     using System.Collections.Generic;
     
-    public partial class Cars
+    public partial class Positions
     {
-        public Cars()
-        {
-            this.Positions = new HashSet<Positions>();
-        }
-    
+        public int id_position { get; set; }
+        public string latitude { get; set; }
+        public string longitude { get; set; }
+        public string status { get; set; }
         public int id { get; set; }
-        public string carMake { get; set; }
-        public string carType { get; set; }
-        public Nullable<int> engineNo { get; set; }
-        public string chasisNo { get; set; }
-        public string power { get; set; }
-        public string fuel { get; set; }
-        public Nullable<int> manYear { get; set; }
     
-        public virtual ICollection<Positions> Positions { get; set; }
+        public virtual Cars Cars { get; set; }
     }
 }

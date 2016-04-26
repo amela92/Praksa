@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Praksa_V2.Positions>
+
+@{
+    ViewBag.Title = "entry";
+}
+
+<h2>entry</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.longitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cars.carMake)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.latitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.longitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cars.carMake)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_position }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_position }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_position })
+        </td>
+    </tr>
+}
+
+</table>

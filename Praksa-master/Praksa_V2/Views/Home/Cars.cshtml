@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Praksa_V2.Cars>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.carMake)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.carType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.engineNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.chasisNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.power)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fuel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.manYear)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.carMake)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.carType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.engineNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.chasisNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.power)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fuel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.manYear)
+                </td>
+                <td>
+                    @Html.ActionLink("Prikaži poziciju", "CarsPozicija", new { id = item.id })
+                    @Html.ActionLink("Dodaj pozicuju", "Addposition")
+                    @Html.ActionLink("Podaci pozicije", "podaciPozicije", new { id = item.id })
+                </td>
+            </tr>
+        }
+
+</table>
