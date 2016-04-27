@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -29,12 +30,13 @@ namespace Praksa_V2.Controllers
 
             return View();
         }
-
+        //Prikazivanje vozila
         public ActionResult Cars()
         {
             return View(entiti.Cars.ToList());
         }
 
+        //Prikazivanje pozecije
         public ActionResult CarsPozicija(int? id)
         {
             Cars kola = entiti.Cars.Find(id);
@@ -53,16 +55,16 @@ namespace Praksa_V2.Controllers
             //return View(kola)
         }
 
-       //Dodavanje auta
+        //Dodavanje auta
         public ActionResult AddCar()
         {
             return View();
         }
-        
 
+        [HttpPost]
         public ActionResult AddCar(Cars c)
         {
-            using(entiti)
+            using (entiti)
             {
                 entiti.Cars.Add(c);
                 entiti.SaveChanges();
@@ -70,11 +72,40 @@ namespace Praksa_V2.Controllers
             return RedirectToAction("AddCar");
         }
 
+        //Dodavanje pozicije vozila
         //public ActionResult Addposition()
         //{
-        //    ViewBag.str = "1";
         //    return View();
         //}
+
+        [HttpPost]
+        public ActionResult Addposition(Positions poz)
+        {
+            using (entiti)
+            {
+                try
+                {
+                    entiti.Positions.Add(poz);
+                    entiti.SaveChanges();
+
+                    return Json(new { success = true, responseText= "Your message successfuly sent!"}, JsonRequestBehavior.AllowGet);
+                
+                    //return RedirectToAction("Addposition");
+                }
+                catch (Exception)
+                {
+                    HttpResponseBase response = Response;
+                    response.StatusCode = 500;
+                    return Json(new { success = false, responseText = "Nije uspjesno dodat u bazu." }, JsonRequestBehavior.AllowGet);
+                }
+                //return RedirectToAction("Addposition");
+            }
+        }
+
+        private ActionResult Request(HttpStatusCode httpStatusCode, string p)
+        {
+            throw new NotImplementedException();
+        }
 
 
 

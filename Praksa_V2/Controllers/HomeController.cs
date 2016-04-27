@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,7 +9,8 @@ namespace Praksa_V2.Controllers
 {
     public class HomeController : Controller
     {
-        CarsEntities entiti = new CarsEntities();
+        CarsEntities1 entiti = new CarsEntities1();
+        //CarsEntities1 entiteti2 = new CarsEntities1();
 
         public ActionResult Index()
         {
@@ -28,18 +30,91 @@ namespace Praksa_V2.Controllers
 
             return View();
         }
-
+       
+        
+        //Prikazivanje vozila
         public ActionResult Cars()
         {
             return View(entiti.Cars.ToList());
         }
 
+        //Prikazivanje pozicije
         public ActionResult CarsPozicija(int? id)
         {
-            
-
             Cars kola = entiti.Cars.Find(id);
             return View(kola);
         }
+
+        //prikazivanje pozicije vozila (id_position, latitude,longitude, status, id)
+        public ActionResult podaciPozicije(int? id)
+        {
+            //Positions pozicije = new Positions();
+            //Postions pozicije = Positions.Where(p => p.id == id);
+            var podaci = entiti.Positions.Where(p => p.id == id).ToList();
+            //Positions podaci = entiteti2.Positions.Find(id);
+            //if (podaci != null) { 
+            return View(podaci);
+            //}
+            //return View(kola)
+        }
+
+        //view za dodavanje auta
+        public ActionResult AddCar()
+        {
+            return View();
+        }
+
+        [HttpPost] //post metoda za dodavanje vozila preko view-a iznad
+        public ActionResult AddCar(Cars c)
+        {
+            using (entiti)
+            {
+                entiti.Cars.Add(c);
+                entiti.SaveChanges();
+            }
+            return RedirectToAction("AddCar");
+        }
+
+        //view za dodavanje pozicije za odredjena vozila ali ali njega ne koristimo vec to obavljamo preko postmana
+        //postman(program skinut kao dodatak za chrom)
+        //Dodavanje pozicije vozila
+        //public ActionResult Addposition()
+        //{
+        //    return View();
+        //}
+
+        [HttpPost]  //post metoda za smijestanje podataka u tabelu pozicija preko postmana
+        public ActionResult Addposition(Positions poz)
+        {
+            using (entiti)
+            {
+                try
+                {
+                    entiti.Positions.Add(poz);
+                    entiti.SaveChanges();
+
+                    return Json(new { success = true, responseText = "Your message successfuly sent!" }, JsonRequestBehavior.AllowGet);
+
+                    //return RedirectToAction("Addposition");
+                }
+                catch (Exception)
+                {
+                    HttpResponseBase response = Response;
+                    response.StatusCode = 500;
+                    return Json(new { success = false, responseText = "Nije uspjesno dodat u bazu." }, JsonRequestBehavior.AllowGet);
+                }
+                //return RedirectToAction("Addposition");
+            }
+        }
+
+        private ActionResult Request(HttpStatusCode httpStatusCode, string p)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+
+
     }
 }
