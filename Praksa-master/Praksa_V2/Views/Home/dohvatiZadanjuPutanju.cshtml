@@ -1,0 +1,96 @@
+﻿
+@model IEnumerable<Praksa_V2.Positions>
+
+@{
+    ViewBag.Title = "dohvatiZadanjuPutanju";
+}
+
+<h2>dohvatiZadanjuPutanju</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.longitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cars.id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.latitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.longitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cars.id)
+        </td>
+    
+    </tr>
+    
+}
+    
+</table>
+<div id="map" style="width:40vw; height: 400px;"></div>
+@*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIObOdaHdLYw5fzAalJGMJjAUiZ6xJUGg&callback=initMap" async defer></script>*@
+<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+<script>
+     @foreach (var item in Model) {
+         <text>
+            var myLatLng={lat: @item.latitude, lng: @item.longitude };
+        </text>
+     }
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: myLatLng
+    });
+
+    var myPath=new Array();
+       @foreach (var item in Model) {
+        <text>
+    var myLatLng= {lat: @item.latitude, lng: @item.longitude };
+    myPath.push(myLatLng);
+     //var myLatLng = { lat: 10 , lng: 10 };
+        //    console.log(myLatLng);
+        //var marker = new google.maps.Marker({
+        //position: myLatLng,
+        //map: map,
+        //title: 'Hello World!'
+        //});
+        </text>
+    }
+    
+    var flightPath = new google.maps.Polyline({
+        path: myPath,
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+    });
+
+    flightPath.setMap(map);
+    
+   //var path = poly.getPath();
+
+    //</text>
+    //}
+    </script>
+
+

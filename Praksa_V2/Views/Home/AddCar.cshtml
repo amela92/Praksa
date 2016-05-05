@@ -1,0 +1,92 @@
+﻿@model Praksa_V2.Cars
+
+@{
+    ViewBag.Title = "AddCar";
+}
+
+<h2>AddCar</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Cars</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.id)
+                @Html.ValidationMessageFor(model => model.id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.carMake, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.carMake)
+                @Html.ValidationMessageFor(model => model.carMake)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.carType, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.carType)
+                @Html.ValidationMessageFor(model => model.carType)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.engineNo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.engineNo)
+                @Html.ValidationMessageFor(model => model.engineNo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.chasisNo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.chasisNo)
+                @Html.ValidationMessageFor(model => model.chasisNo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.power, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.power)
+                @Html.ValidationMessageFor(model => model.power)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fuel, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fuel)
+                @Html.ValidationMessageFor(model => model.fuel)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.manYear, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.manYear)
+                @Html.ValidationMessageFor(model => model.manYear)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

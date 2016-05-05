@@ -107,9 +107,32 @@ namespace Praksa_V2.Controllers
             }
         }
 
-        private ActionResult Request(HttpStatusCode httpStatusCode, string p)
+        public ActionResult dohvatiZadanjuPutanju(int? id)
         {
-            throw new NotImplementedException();
+            var podaci = entiti.Positions.Where(p => p.id == id).ToList();
+            int zadnjiS = entiti.Positions.Where(e => e.status == "s").Where(e => e.id == id).Max(e => e.id_position);
+            int zadnjiP = entiti.Positions.Where(e => e.status == "e").Where(e => e.id == id).Max(e => e.id_position);
+
+            List<Positions> lista = new List<Positions>();
+            for (int i = zadnjiS; i <= zadnjiP; i++)
+            {
+                var startnaTacka = entiti.Positions.Where(e => e.id_position == i).First();
+                lista.Add(startnaTacka);
+
+            }
+
+
+
+            //  var podaci = entiti.Positions.Where(p => p.id == id).ToList();
+            //  var zadnjiS = entiti.Positions.Where(e => e.status == "s").Where(e=>e.id==id).Max(e=>e.id_position);
+            //  var startnaTacka = entiti.Positions.Where(e => e.id_position == zadnjiS).ToList();
+            //  //tacke.latitude = entiti.Positions.Where(x => x.status == "s");
+            // var krajnjaTacka = entiti.Positions.Where(e => e.id_position>zadnjiS).Where(e=>e.status=="e");
+            //// var usputneTacke = entiti.Positions.Where(u => u.id_position > startnaTacka.id_position).ToList();
+            return View(lista);
+
+
+
         }
 
 

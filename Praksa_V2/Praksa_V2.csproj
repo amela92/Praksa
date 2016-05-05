@@ -289,6 +289,8 @@
     <Content Include="Views\Home\CarsPozicija.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_ViewStart.cshtml" />
+    <Content Include="Views\Home\AddCar.cshtml" />
+    <Content Include="Views\Home\dohvatiZadanjuPutanju.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
