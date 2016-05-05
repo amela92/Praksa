@@ -4,7 +4,7 @@
     ViewBag.Title = "podaciPozicije";
 }
 
-<h2>podaciPozicije</h2>
+<h2>Data of all position</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -48,9 +48,9 @@
             @Html.DisplayFor(modelItem => item.id)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) //
-            @*@Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })*@
+           @* @Html.ActionLink("Edit", "Edit", new { id=item.id })
+    @Html.ActionLink("Details", "Details", new { id=item.id })
+    @Html.ActionLink("Delete", "Delete", new { id=item.id })*@
         </td>
     </tr>
 }

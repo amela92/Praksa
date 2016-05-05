@@ -11,13 +11,19 @@ namespace Praksa_V2
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Positions
     {
+        [Display(Name = "ID pozicije")]
         public int id_position { get; set; }
+        [Display(Name = "Latituda")]
         public string latitude { get; set; }
+        [Display(Name = "Longituda")]
         public string longitude { get; set; }
+        [Display(Name = "Status taèke")]
         public string status { get; set; }
+        [Display(Name = "ID vozila")]
         public int id { get; set; }
     
         public virtual Cars Cars { get; set; }

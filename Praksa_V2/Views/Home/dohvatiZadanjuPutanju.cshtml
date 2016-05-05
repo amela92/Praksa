@@ -85,6 +85,24 @@
 
     flightPath.setMap(map);
 
+    // Snap a user-created polyline to roads and draw the snapped path
+    function runSnapToRoad(path) {
+        var pathValues = [];
+        for (var i = 0; i < path.getLength(); i++) {
+            pathValues.push(path.getAt(i).toUrlValue());
+        }
+
+        $.get('https://roads.googleapis.com/v1/snapToRoads', {
+            interpolate: true,
+            key: apiKey,
+            path: pathValues.join('|')
+        }, function(data) {
+            processSnapToRoadResponse(data);
+            drawSnappedPolyline();
+            getAndDrawSpeedLimits();
+        });
+    }
+
    //var path = poly.getPath();
 
     //</text>

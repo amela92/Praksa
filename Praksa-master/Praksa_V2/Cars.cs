@@ -11,6 +11,7 @@ namespace Praksa_V2
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Cars
     {
@@ -18,14 +19,21 @@ namespace Praksa_V2
         {
             this.Positions = new HashSet<Positions>();
         }
-    
+        [Display(Name="ID")]
         public int id { get; set; }
+        [Display(Name = "Marka")]
         public string carMake { get; set; }
+        [Display(Name = "Tip vozila")]
         public string carType { get; set; }
+        [Display(Name = "Broj motora")]
         public Nullable<int> engineNo { get; set; }
+        [Display(Name = "Broj šasije")]
         public string chasisNo { get; set; }
+        [Display(Name = "Snaga motora")]
         public string power { get; set; }
+        [Display(Name = "Vrsta goriva")]
         public string fuel { get; set; }
+        [Display(Name = "Godina proizvodnje")]
         public Nullable<int> manYear { get; set; }
     
         public virtual ICollection<Positions> Positions { get; set; }
